@@ -1,0 +1,40 @@
+﻿@model WrbDeTai.Models.LoginViewModel
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<div class="login-container">
+    <div class="login-box">
+        <div class="login-header">
+            <h2>@ViewBag.Title</h2>
+            <p>Vui lòng nhập thông tin đăng nhập</p>
+        </div>
+        <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewBag.ReturnUrl" method="post" class="login-form" role="form">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StudentId" class="control-label"></label>
+                <input asp-for="StudentId" class="form-control" />
+                <span asp-validation-for="StudentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" type="password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group checkbox">
+                <div class="checkbox">
+                    <input asp-for="RememberMe" type="checkbox" />
+                    <label asp-for="RememberMe"></label>
+                </div>
+            </div>
+            <div class="form-group align-items-center justify-content-center">
+                <input type="submit" value="Đăng nhập" class="btn btn-primary btn-block" />
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
